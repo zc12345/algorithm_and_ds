@@ -18,9 +18,19 @@ def search(arr, element):
     Returns:
         None
     '''
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] < element:
+            low = mid + 1
+        elif arr[mid] > element:
+            high = mid - 1
+        else:
+            return mid
     return None
 
 if __name__ == "__main__":
     arr = [1, 2, 4]
     e = 4
     i = search(arr, e)
+    print(i)
