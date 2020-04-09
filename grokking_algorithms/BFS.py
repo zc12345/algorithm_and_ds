@@ -11,8 +11,22 @@
 
 from collections import deque
 
+def dfs_search(graph, s):
+    visited_nodes = set()
+    stack = []
+    visited_nodes.add(s)
+    stack.append(s)
+    while stack:
+        node = stack.pop()
+        for n in graph[node]:
+            if n not in visited_nodes:
+                stack.append(node)
+                stack.append(n)
+                visited_nodes.add(n)
+                print(n)
+                break
 
-def search(graph, name):
+def bfs_search(graph, name):
     search_queue = deque()
     search_queue += graph[name]
     searched = []
@@ -34,6 +48,21 @@ def check(name):
 
 
 if __name__ == "__main__":
+    
+    # graph={
+    #     'A':['B','C'],
+    #     'B':['D','E','A'],
+    #     'C':['F','G','A'],
+    #     'D':['B','H','I'],
+    #     'E':['B'],
+    #     'F':['C'],
+    #     'G':['C'],
+    #     'H':['D'],
+    #     'I':['D']
+    # }
+    # s = 'A'
+    # dfs_search(graph, s)
+    # dfs(graph, s)
     graph = {}  # 使用hash表构建graph
     graph['you'] = ['alice', 'bob', 'claire']
     graph['bob'] = ['anuj', 'peggy']
@@ -45,5 +74,6 @@ if __name__ == "__main__":
     graph['john'] = []
 
     name = 'you'
-    res = search(graph, name)
-    print(res)
+    # res = bfs_search(graph, name)
+    res = dfs_search(graph, name)
+    # print(res)
